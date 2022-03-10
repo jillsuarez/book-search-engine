@@ -36,9 +36,11 @@ if (process.env.NODE_ENV === 'production') {
 //remove below
 // app.use(routes);
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/build/index.html'));
-});
+
+//uncomment for functionality when ready
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname, '../client/build/index.html'));
+// });
 
 
 db.once('open', () => {

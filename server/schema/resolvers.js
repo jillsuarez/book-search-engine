@@ -6,7 +6,7 @@ const resolvers = {
     Query: {
         me: async(parents, args, context) => {
             if(context.user) {
-                const userData = await User.findOne({ _id: context.user._id}).populate("savedbooks");
+                const userData = await User.findOne({ _id: context.user._id}).populate("savebooks");
                 return userData;
             }
             throw new AuthenticationError("Not logged in");
@@ -34,11 +34,11 @@ const resolvers = {
             const token = signToken(user);
             return { token, user };
         },
-        savedBook: async (parent, args, context) => {
+        saveBook: async (parent, args, context) => {
             if (context.user) {
                 const updateUser = await User.findOneAndUpdate(
                     {_id: context.user._id},
-                    {$push: {savedBooks: args}},
+                    {$push: {saveBooks: args}},
                     {new: true, runValidator: true}
                 );
                 return updateUser;
@@ -49,7 +49,7 @@ const resolvers = {
             if(context.user) {
                 const updateUser = await User.findOneAndUpdate(
                     {_id: context.user._id},
-                    {$pull: { savedBooks: { bookId: bookId }}},
+                    {$pull: { saveBooks: { bookId: bookId }}},
                     {new: true}
                 );
                 return updateUser;

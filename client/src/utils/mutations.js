@@ -39,7 +39,7 @@ mutation savebooks($authors:[String], $description: String!, $bookId: String!, $
       description
       title
       image
-      links
+      link
     }
   }
 }
